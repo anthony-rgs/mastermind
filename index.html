@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Mastermind</title>
+        <!-- import fichier -->
+        <link href="style/style.css" rel="stylesheet">
+        <script src="js/script.js" defer> </script>
+    </head>
+
+    <body>
+
+        <!-- Logo Mastermind -->
+        <img src="image/mastermind-logo.png" alt="Logo du jeu Mastermind" class="logo">
+
+        <!-- Menu -->
+        <button id="btnNav">☰</button>
+        <nav id="nav">
+            <ul>
+                <li><a href="#rules-popup" class="button" >Règles</a></li>
+                <li><a href="#" onClick="history.go(0)">Restart</a></li>
+                <li><a href="https://github.com/Anthony-Rgs" target="_blank">Github</a></li>
+                <li><a href="https://www.linkedin.com/in/anthony-ringressi-441048226/" target="_blank">Linkedin</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"target="_blank">Bonus</a></li>
+
+                <!-- Dark Mode -->       
+                <li class="toggle-container">
+                    <input type="checkbox" id="toggle" name="toggle"> <label for="toggle"><img src="image/night.svg" alt="icon soleil switch" class="icon-switch" id="iconChange" onclick="changeIcon()"></label>
+                </li> 
+            </ul>
+        </nav>
+
+        <!-- Popup Rules -->
+        <div class="popup" id="rules-popup">
+            <div class="popup-content">
+                <h1>Règles</h1>
+                <p>Trouvez la combinaison secrète de l'ordinateur.</p>
+                <p>À chaque tours proposez un choix de 4 couleurs parmis les 5 affichées.</p>
+                <p>L'ordinateur vous répondra le nombre de couleurs bien placées et le nombre de couleurs présent dans la manche mais que vous avez mal placées.</p>
+                <p>La partie s'arrêtera sur une victoire si vous trouvez la combinaision secrète. </p>
+                <p>Si vous ne trouvez pas la combinaison secrète dans les 10 manches vous perderez.</p>
+                <p>Arriverez-vous à cracker le code de l'ordinateur ?</p>
+                <a href="#" class="close">x</a>
+            </div>
+        </div>
+
+
+        <div class="affichage">
+            
+            <div class="selection_and_choice">
+                <!-- Selection -->
+                <div class="selection">
+
+                    <div class="end" id="endPopupSelection"> </div>
+
+                    <h2>Choisissez vos couleurs</h2>
+                    <div class="playerSelection"> 
+                        <button id="blue" onclick="pushBlue()">
+                        <button id="green" onclick="pushGreen()">
+                        <button id="purple" onclick="pushPurple()">
+                        <button id="red" onclick="pushRed()"> 
+                        <button id="yellow" onclick="pushYellow()">
+                    </div>
+                </div>
+                <!-- Choice -->
+                <div class="choice">
+
+                    <div class="end" id="endPopupChoice"> </div>
+
+                    <h2>Votre choix</h2>
+                    <div class="player_choice"> 
+                        <div class="player_choice_color1"> </div>
+                        <div class="player_choice_color2"> </div>
+                        <div class="player_choice_color3"> </div>
+                        <div class="player_choice_color4"> </div>
+                    </div>
+                    <div class="clear_send">
+                        <input type="button"> <label> <img src="image/light/delete.svg" class="button_clear" onclick="clearChoice()"> </label>
+                        <input type="button"> <label> <img src="image/light/send.svg" class="button_send" onclick="sendChoice()" id="go"> </label>
+                    </div>
+                </div>
+
+                <!-- Music -->
+                <div class="music">
+                    <div class="details">
+                        <div class="track-picture"></div>
+                        <div class="track-name">Track Name</div>
+                        <div class="track-artist">Track Artist</div>
+                    </div>
+
+                    <div class="position_buttons">
+                        <div class="buttons">
+                            <div class="prev">
+                                <input type="button"> <label> <img src="image/light/prev.svg" alt="icon prev" onclick="prevTrack()" class="iconPrev"> </label>
+                            </div>
+                            <div class="playpause">
+                                <input type="button"> <label> <img src="image/light/play.svg" alt="icon play pause" onclick="playpauseTrack()" id="playpauseIconChange" class="iconPlay"> </label>
+                            </div>
+                            <div class="next">
+                                <input type="button"> <label> <img src="image/light/next.svg" alt="icon next" onclick="nextTrack()" class="iconNext"> </label>
+                            </div>
+                            <div>
+                                <input type="range" min="1" max="100" value="0" class="seek_slider">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Game -->
+            <div class= "game">
+
+                <div class="end" id="endPopupGame">
+                    <div id="container">
+                        <div id="VorL"></div>
+                        <div id="text">La combinaison était :</div>
+                        <div class="answers">
+                            <div class="answer" id="1"> </div>
+                            <div class="answer" id="2"> </div>
+                            <div class="answer" id="3"> </div>
+                            <div class="answer" id="4"> </div> 
+                        </div>
+                        <button id="restart" onclick="restartGame()">Relancer</button>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-1">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-1"></div>
+                    <div class= "score" id="score-1">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-2">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-2"></div>
+                    <div class= "score" id="score-2">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-3">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-3"></div>
+                    <div class= "score" id="score-3">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-4">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-4"></div>
+                    <div class= "score" id="score-4">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-5">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-5"></div>
+                    <div class= "score" id="score-5">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-6">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-6"></div>
+                    <div class= "score" id="score-6">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-7">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-7"></div>
+                    <div class= "score" id="score-7">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-8">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-8"></div>
+                    <div class= "score" id="score-8">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-9">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-9"></div>
+                    <div class= "score" id="score-9">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+                <div class="set">
+                    <div class= "player" id="line-10">
+                        <div class="choice_color1"> </div>
+                        <div class="choice_color2"> </div>
+                        <div class="choice_color3"> </div>
+                        <div class="choice_color4"> </div>
+                    </div>
+                    <div class="text" id="text-10"></div>
+                    <div class= "score" id="score-10">
+                        <div class="answer1"></div>
+                        <div class="answer2"></div>
+                        <div class="answer3"></div>
+                        <div class="answer4"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
