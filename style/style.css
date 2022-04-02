@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed&display=swap');
 body {
     color: #fff;
     background-color: #1f1f1f;
     transition: background 0.2s linear, color 0.2s linear;
+    font-family: 'Asap Condensed', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 8px;
+    box-sizing: border-box;
 }
 
 
@@ -10,10 +18,10 @@ body {
 .logo {
     max-width: 150px;
     max-height: 150px;
-    padding: 0.5em;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 10px
 }
 
 
@@ -161,7 +169,8 @@ input {
 .affichage {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    flex: 1;
 }
 
 .selection_and_choice {
@@ -176,7 +185,13 @@ input {
     background-color: #333333;
     border-radius: 8px;
     height: 30px;
-    width: 23em;
+    width: 370px;
+}
+
+#endPopupSelection {
+    width: 370px;
+    height: 137px;
+    position: absolute;
 }
 
 .selection h2 {
@@ -237,7 +252,13 @@ input {
     flex-direction: column;
     background-color: #333333;
     border-radius: 8px;
-    width: 23em;
+    width: 370px;
+}
+
+#endPopupChoice {
+    width: 370px;
+    height: 223.5px;
+    position: absolute;
 }
 
 .choice h2 {
@@ -299,8 +320,8 @@ input {
     flex-direction: column;
     background-color: #333333;
     border-radius: 8px;
-    width: 23em;
-    height: 15.36em;
+    width: 370px;
+    height: 245px;
 }
 
 .details {
@@ -375,13 +396,13 @@ input {
 
 .game {
     background-color: #333333;
-    width: 24em;
-    height: 42em;
+    width: 384px;
+    height: 670px;
     border-radius: 8px;
-    /* padding: 1em 1em 1em 1em; */
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-evenly;
+    position: relative;
 }
 
 .set {
@@ -416,59 +437,6 @@ input {
     border-radius: 50%;
 }
 
-
-/* Light Mode */
-
-body.light {
-    background-color: #fff;
-    color: black;
-    transition: background 0.2s linear, color 0.2s linear;
-}
-
-body.light #rules-popup .popup-content {
-    background-color: white;
-}
-
-body.light .game {
-    background-color: #f1f1f1;
-}
-
-body.light .choice {
-    background-color: #f1f1f1;
-}
-
-body.light .player_choice div {
-    background-color: #f1f1f1;
-}
-
-body.light .selection {
-    background-color: #f1f1f1;
-}
-
-body.light .music {
-    background-color: #f1f1f1;
-}
-
-body.light .iconPrev {
-    content: url(../image/dark/prev.svg)
-}
-
-body.light .iconPlay {
-    content: url(../image/dark/play.svg)
-}
-
-body.light .iconNext {
-    content: url(../image/dark/next.svg)
-}
-
-body.light .button_send {
-    content: url(../image/dark/send.svg)
-}
-
-body.light .button_clear {
-    content: url(../image/dark/delete.svg)
-}
-
 .end {
     border-radius: 8px;
     position: fixed;
@@ -478,8 +446,8 @@ body.light .button_clear {
 }
 
 #endPopupGame {
-    width: 24em;
-    height: 42em;
+    width: 100%;
+    height: 670px;
     position: absolute;
 }
 
@@ -531,14 +499,160 @@ body.light .button_clear {
     color: white;
 }
 
-#endPopupChoice {
-    width: 23em;
-    height: 14.01em;
-    position: absolute;
+
+/* Light Mode */
+
+body.light {
+    background-color: #fff;
+    transition: background 0.2s linear, color 0.2s linear;
 }
 
-#endPopupSelection {
-    width: 23em;
-    height: 8.6em;
-    position: absolute;
+body.light #rules-popup .popup-content {
+    background-color: white;
+    color: black;
+}
+
+@media screen and (max-width: 804px) {
+    body {
+        font-size: 14px;
+    }
+    .game {
+        height: 656px;
+    }
+    #endPopupGame {
+        height: 656px
+    }
+    #endPopupChoice {
+        height: 220px
+    }
+    #endPopupSelection {
+        height: 134px
+    }
+    .player div {
+        width: 38px;
+        height: 38px;
+    }
+    .score {
+        padding: 0 1px 0 5px;
+    }
+    .score div {
+        height: 15px;
+        width: 15px;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .selection,
+    .choice,
+    .music,
+    .game,
+    #endPopupChoice,
+    #endPopupSelection {
+        width: 300px
+    }
+    #rules-popup .popup-content {
+        width: 400px
+    }
+    .player div {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 634px) {
+    .set {
+        align-items: center;
+    }
+    .player div {
+        width: 25px;
+        height: 25px;
+        margin: 0 5px 0 10px;
+    }
+    .score div {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media screen and (max-width: 578px) {
+    .selection,
+    .choice,
+    .music,
+    #endPopupChoice,
+    #endPopupSelection {
+        width: 250px
+    }
+    #endPopupChoice {
+        height: 205px
+    }
+    .player_choice div {
+        width: 30px;
+        height: 30px;
+    }
+    .player div {
+        width: 25px;
+        height: 25px;
+        margin: 0 2px 0 2px;
+    }
+    .score div {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media screen and (max-width: 484px) {
+    #rules-popup .popup-content {
+        width: 260px
+    }
+    .affichage {
+        display: grid;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .music {
+        display: none;
+        visibility: hidden;
+    }
+    .selection,
+    .choice {
+        margin-top: 20px;
+        width: 300px;
+    }
+    #endPopupChoice {
+        width: 300px;
+        height: 135px
+    }
+    #endPopupSelection {
+        width: 300px;
+        height: 99px
+    }
+    .selection h2 {
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 15px;
+    }
+    .choice h2 {
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 15px;
+    }
+    .game {
+        width: 300px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .clear_send {
+        margin-top: 0;
+    }
+    .button_clear,
+    .button_send {
+        height: 20px;
+        margin-bottom: 10px;
+    }
+    .player div {
+        width: 30px;
+        height: 30px;
+        margin: 0 10px 0 10px;
+    }
 }

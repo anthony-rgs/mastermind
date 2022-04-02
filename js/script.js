@@ -19,11 +19,10 @@ function changeIcon() {
     var iconTheme = document.getElementById('iconChange');
     if (iconTheme.src.match("image/day.svg")) {
         iconTheme.src = "image/night.svg";
-    }
-    else {
+    } else {
         iconTheme.src = "image/day.svg";
     }
-} 
+}
 
 
 
@@ -44,18 +43,17 @@ let updateTimer;
 
 let curr_track = document.createElement('audio');
 
-let track_list = [
-    {
+let track_list = [{
         name: "Les Démons de Minuit",
         artist: "Images",
         image: "music-logo/les-demons-de-minuit-picture.png",
         path: "music/les-demons-de-minuit.mp3",
     },
     {
-      name: "Big Bisous",
-      artist: "Carlos",
-      image: "music-logo/carlos.png",
-      path: "music/big-bisous.mp3",
+        name: "Big Bisous",
+        artist: "Carlos",
+        image: "music-logo/carlos.png",
+        path: "music/big-bisous.mp3",
     },
     {
         name: "Fruit de la Passion",
@@ -101,13 +99,13 @@ function loadTrack(track_index) {
     curr_track.addEventListener("ended", nextTrack);
 
 }
-  
+
 function resetValues() {
     seek_slider.value = 0;
 }
-  
+
 loadTrack(track_index);
-  
+
 function playpauseTrack() {
     if (!isPlaying) playTrack();
     else pauseTrack();
@@ -130,14 +128,14 @@ function pauseTrack() {
         pauseIcon.src = "image/light/play.svg";
     }
 }
-  
+
 function nextTrack() {
     if (track_index < track_list.length - 1) track_index += 1;
     else track_index = 0;
     loadTrack(track_index);
     playTrack();
 }
-  
+
 function prevTrack() {
     if (track_index > 0) track_index -= 1;
     else track_index = track_list.length;
@@ -148,36 +146,36 @@ function prevTrack() {
 
 
 // ~ VARIABLES ~
-    // Choix des couleurs du joueur :
-        // - Variables pour récupérer des 'class' de l'html
-const player_choice_color_1 = document.querySelector(".player_choice_color1"); 
-const player_choice_color_2 = document.querySelector(".player_choice_color2"); 
-const player_choice_color_3 = document.querySelector(".player_choice_color3"); 
+// Choix des couleurs du joueur :
+// - Variables pour récupérer des 'class' de l'html
+const player_choice_color_1 = document.querySelector(".player_choice_color1");
+const player_choice_color_2 = document.querySelector(".player_choice_color2");
+const player_choice_color_3 = document.querySelector(".player_choice_color3");
 const player_choice_color_4 = document.querySelector(".player_choice_color4");
-        // - Variables pour mettre les couleurs choisis par le joueur dans des listes
+// - Variables pour mettre les couleurs choisis par le joueur dans des listes
 choices = [player_choice_color_1, player_choice_color_2, player_choice_color_3, player_choice_color_4];
 let player_choice = [];
 const player_color = [];
 
-    // Score :
-        // - Variables pour récupérer des 'class' de l'html
-const answer_1 =  document.querySelector(".answer1"); 
-const answer_2 =  document.querySelector(".answer2"); 
-const answer_3 =  document.querySelector(".answer3"); 
-const answer_4 =  document.querySelector(".answer4");
-        // - Variables pour mettre le score dans une liste
-let answer_list =  [answer_1, answer_2, answer_3, answer_4];
+// Score :
+// - Variables pour récupérer des 'class' de l'html
+const answer_1 = document.querySelector(".answer1");
+const answer_2 = document.querySelector(".answer2");
+const answer_3 = document.querySelector(".answer3");
+const answer_4 = document.querySelector(".answer4");
+// - Variables pour mettre le score dans une liste
+let answer_list = [answer_1, answer_2, answer_3, answer_4];
 
-    // Variables du compteur de tours :
-    const text = document.querySelector(".text")
-    let round_text = 1
+// Variables du compteur de tours :
+const text = document.querySelector(".text")
+let round_text = 1
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Push couleurs -> onClick :
-    // - Push Bleu 
+// - Push Bleu 
 function pushBlue() {
     const blue = "b";
     const blue_color = "#ABDAFC";
@@ -191,9 +189,9 @@ function pushBlue() {
         }
     }
 }
-    // - Push Vert 
+// - Push Vert 
 function pushGreen() {
-    const green = "g"; 
+    const green = "g";
     const green_color = "#A7E8BD";
     if (player_choice.length < 4) {
         let i = 0;
@@ -204,10 +202,10 @@ function pushGreen() {
             i++;
         }
     }
-}    
-    // - Push Violet 
+}
+// - Push Violet 
 function pushPurple() {
-    const purple = "p"; 
+    const purple = "p";
     const purple_color = "#D4ADCF";
     if (player_choice.length < 4) {
         let i = 0;
@@ -219,11 +217,11 @@ function pushPurple() {
         }
     }
 }
-    // - Push Rouge 
+// - Push Rouge 
 function pushRed() {
     if (player_choice.length < 4) {
         let i = 0;
-        const red = "r"; 
+        const red = "r";
         const red_color = "#F57266";
         player_choice.push(red);
         player_color.push(red_color);
@@ -233,7 +231,7 @@ function pushRed() {
         }
     }
 }
-    // - Push Jaune 
+// - Push Jaune 
 function pushYellow() {
     if (player_choice.length < 4) {
         let i = 0;
@@ -251,22 +249,17 @@ function pushYellow() {
 
 // Fonction pour clear les choix de la manche :
 function clearChoice() {
-    player_choice_color_1.style.removeProperty("background-color");
-    player_choice_color_2.style.removeProperty("background-color");
-    player_choice_color_3.style.removeProperty("background-color");
-    player_choice_color_4.style.removeProperty("background-color");
+    let i = 0
+    while (i < 4) {
+        choices[i].style.removeProperty("background-color");
+        i++;
+    }
     player_choice.length = 0;
     player_color.length = 0;
 }
-// Fonction pour clear le score de la manche :
-function clearScore() {
-    answer_1.style.removeProperty("background-color");
-    answer_2.style.removeProperty("background-color");
-    answer_3.style.removeProperty("background-color");
-    answer_4.style.removeProperty("background-color");
-}
+
 // Fonction pour compter le nombre de tours :
-function round() { 
+function round() {
     round_text++;
     return round_text
 }
@@ -275,35 +268,33 @@ function round() {
 // Fonction pour envoyer les choix de la manche dans le plateau de jeu
 function sendChoice() {
     if (player_choice.length == 4) {
-        const emplacement_color1 = document.querySelector(`#line-${round_text} .choice_color1`); 
-        const emplacement_color2 = document.querySelector(`#line-${round_text} .choice_color2`); 
-        const emplacement_color3 = document.querySelector(`#line-${round_text} .choice_color3`); 
+
+        const emplacement_color1 = document.querySelector(`#line-${round_text} .choice_color1`);
+        const emplacement_color2 = document.querySelector(`#line-${round_text} .choice_color2`);
+        const emplacement_color3 = document.querySelector(`#line-${round_text} .choice_color3`);
         const emplacement_color4 = document.querySelector(`#line-${round_text} .choice_color4`);
+        const emplacement_color = [emplacement_color1, emplacement_color2, emplacement_color3, emplacement_color4]
 
         color1 = player_color[0];
         color2 = player_color[1];
-        color3 = player_color[2]; 
+        color3 = player_color[2];
         color4 = player_color[3];
 
-        emplacement_color1.style.background = color1; 
-        emplacement_color2.style.background = color2; 
-        emplacement_color3.style.background = color3; 
+        emplacement_color1.style.background = color1;
+        emplacement_color2.style.background = color2;
+        emplacement_color3.style.background = color3;
         emplacement_color4.style.background = color4;
 
-        emplacement_color1.style.border = "solid"; 
-        emplacement_color2.style.border = "solid"; 
-        emplacement_color3.style.border = "solid"; 
-        emplacement_color4.style.border = "solid";
+        let i = 0
+        while (i < 4) {
+            emplacement_color[i].style.border = "solid";
+            emplacement_color[i].style.borderColor = "white";
+            i++;
+        }
 
-        // Pour contrer le light mode qui met les bords en noir
-        emplacement_color1.style.borderColor = "white";
-        emplacement_color2.style.borderColor = "white"; 
-        emplacement_color3.style.borderColor = "white"; 
-        emplacement_color4.style.borderColor = "white"; 
-        
-        const text_round = document.querySelector(`#text-${round_text}`); 
+        const text_round = document.querySelector(`#text-${round_text}`);
 
-        text_round.style.color = "white" 
+        text_round.style.color = "white"
         text_round.textContent = round_text
 
 
@@ -360,19 +351,12 @@ function verif(player_choice) {
     let badSpot = 0;
     let list_score = [];
 
-    var iconTheme = document.getElementById('iconChange');
-    if (iconTheme.src.match("image/night.svg")) {
-        color_good = "#fff";
-    }
-    else {
-        color_good = "#333333 ";
-    }
-
+    color_good = "#fff";
     color_bad = "#E94435";
 
     // copie séq ordi
     let copyOrdi = sequenceOrdinateur.slice();
-    
+
     // boucle pour identifier le nombre de couleur bien placée
     let i = 0;
     while (i < player_choice.length) {
@@ -401,9 +385,9 @@ function verif(player_choice) {
         }
     }
 
-    const answer1 = document.querySelector(`#score-${round_text} .answer1`); 
-    const answer2 = document.querySelector(`#score-${round_text} .answer2`); 
-    const answer3 = document.querySelector(`#score-${round_text} .answer3`); 
+    const answer1 = document.querySelector(`#score-${round_text} .answer1`);
+    const answer2 = document.querySelector(`#score-${round_text} .answer2`);
+    const answer3 = document.querySelector(`#score-${round_text} .answer3`);
     const answer4 = document.querySelector(`#score-${round_text} .answer4`);
 
     answer1.style.background = list_score[0];
@@ -415,7 +399,7 @@ function verif(player_choice) {
     clearChoice()
     round()
 
-    const text_V_or_L = document.getElementById("VorL"); 
+    const text_V_or_L = document.getElementById("VorL");
 
     // text_round.style.color = "white" 
     if (round_text > 10 && goodColor != 4) {
@@ -437,48 +421,45 @@ function verif(player_choice) {
     }
 }
 
-
-
-
-
-
-
-
 const end1 = document.getElementById("endPopupGame")
 const end2 = document.getElementById("endPopupChoice")
 const end3 = document.getElementById("endPopupSelection")
 
-function restartGame(){
+function restartGame() {
     end1.style.display = "none";
     end3.style.display = "none"
     end2.style.display = "none"
     sequenceOrdinateur = construireSequenceOrdinateur();
     console.log("Nouvelle partie, nouvelle séquence Ordi : " + sequenceOrdinateur);
+    clearScore()
     round_text = 1
 }
 
+// Fonction pour clear le score de la manche :
+function clearScore() {
+    for (let i = 1; i < 11; i++) {
 
+        const answer1 = document.querySelector(`#score-${i} .answer1`);
+        const answer2 = document.querySelector(`#score-${i} .answer2`);
+        const answer3 = document.querySelector(`#score-${i} .answer3`);
+        const answer4 = document.querySelector(`#score-${i} .answer4`);
+        const answers = [answer1, answer2, answer3, answer4]
 
+        const emplacement_color1 = document.querySelector(`#line-${i} .choice_color1`);
+        const emplacement_color2 = document.querySelector(`#line-${i} .choice_color2`);
+        const emplacement_color3 = document.querySelector(`#line-${i} .choice_color3`);
+        const emplacement_color4 = document.querySelector(`#line-${i} .choice_color4`);
+        const emplacement_color = [emplacement_color1, emplacement_color2, emplacement_color3, emplacement_color4]
 
+        let j = 0
+        while (j < 4) {
+            answers[j].style.removeProperty("background-color");
+            emplacement_color[j].style.removeProperty("background-color");
+            emplacement_color[j].style.removeProperty("border");
+            j++;
+        }
+        const txt = document.getElementById(`text-${i}`);
+        txt.style.removeProperty("color");
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-let lightModeGood = "#333333" ;
-let darkModeGood = "#fff" ;
-
-// function lightModeScore(){
-//     if (goodColor == 1) {
-//         if ( answer_1.style.background  = darkModeGood )
-//         answer_1.style.background = lightModeGood }
-// }
+}
