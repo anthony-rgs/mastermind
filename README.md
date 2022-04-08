@@ -1,5 +1,12 @@
+<p align="center">
+  <img width="50%" src="image/mastermind-logo.svg" />
+</p>
+
+### <p align="center"> Mastermind • <a href="https://anthony-rgs.github.io/mastermind/" > voir le site </a> </p>
+
+
 ### 1. Pourquoi 
-Dans le cadre d'un premier projet front dans notre [école](https://www.hetic.net/), nous avons eu pour exercice de faire un mastermind sur la console en JavaScrpit.
+Dans le cadre d'un premier projet front dans mon [école](https://www.hetic.net/), nous avons eu pour exercice de faire un mastermind sur la console en JavaScrpit.
 
 ### 2. Contraintes imposées
 - L'ordinateur doit créer une séquence aléatoire de 4 couleurs (pouvant se répéter) parmis un choix de 5 couleurs différentes
