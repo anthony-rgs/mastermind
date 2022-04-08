@@ -1,4 +1,4 @@
-// menu
+// Menu
 const btn = document.getElementById("btnNav")
 const nav = document.getElementById("nav")
 
@@ -8,7 +8,7 @@ btn.addEventListener('click', () => {
 });
 
 
-// light Mode
+// Light Mode
 const toggle = document.getElementById("toggle")
 
 toggle.addEventListener('change', (e) => {
@@ -23,8 +23,6 @@ function changeIcon() {
         iconTheme.src = "image/day.svg";
     }
 }
-
-
 
 // Music
 let track_art = document.querySelector(".track-picture");
@@ -145,37 +143,23 @@ function prevTrack() {
 
 
 
-// ~ VARIABLES ~
-// Choix des couleurs du joueur :
-// - Variables pour récupérer des 'class' de l'html
 const player_choice_color_1 = document.querySelector(".player_choice_color1");
 const player_choice_color_2 = document.querySelector(".player_choice_color2");
 const player_choice_color_3 = document.querySelector(".player_choice_color3");
 const player_choice_color_4 = document.querySelector(".player_choice_color4");
-// - Variables pour mettre les couleurs choisis par le joueur dans des listes
 choices = [player_choice_color_1, player_choice_color_2, player_choice_color_3, player_choice_color_4];
 let player_choice = [];
 const player_color = [];
-
-// Score :
-// - Variables pour récupérer des 'class' de l'html
 const answer_1 = document.querySelector(".answer1");
 const answer_2 = document.querySelector(".answer2");
 const answer_3 = document.querySelector(".answer3");
 const answer_4 = document.querySelector(".answer4");
-// - Variables pour mettre le score dans une liste
 let answer_list = [answer_1, answer_2, answer_3, answer_4];
-
-// Variables du compteur de tours :
 const text = document.querySelector(".text")
 let round_text = 1
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 // Push couleurs -> onClick :
-// - Push Bleu 
 function pushBlue() {
     const blue = "b";
     const blue_color = "#ABDAFC";
@@ -189,7 +173,7 @@ function pushBlue() {
         }
     }
 }
-// - Push Vert 
+
 function pushGreen() {
     const green = "g";
     const green_color = "#A7E8BD";
@@ -203,7 +187,7 @@ function pushGreen() {
         }
     }
 }
-// - Push Violet 
+
 function pushPurple() {
     const purple = "p";
     const purple_color = "#D4ADCF";
@@ -217,7 +201,7 @@ function pushPurple() {
         }
     }
 }
-// - Push Rouge 
+
 function pushRed() {
     if (player_choice.length < 4) {
         let i = 0;
@@ -231,7 +215,7 @@ function pushRed() {
         }
     }
 }
-// - Push Jaune 
+
 function pushYellow() {
     if (player_choice.length < 4) {
         let i = 0;
@@ -247,7 +231,7 @@ function pushYellow() {
 }
 
 
-// Fonction pour clear les choix de la manche :
+// Clear choice (round) :
 function clearChoice() {
     let i = 0
     while (i < 4) {
@@ -258,14 +242,14 @@ function clearChoice() {
     player_color.length = 0;
 }
 
-// Fonction pour compter le nombre de tours :
+// Count rounds :
 function round() {
     round_text++;
     return round_text
 }
 
 
-// Fonction pour envoyer les choix de la manche dans le plateau de jeu
+// Send choice in the game
 function sendChoice() {
     if (player_choice.length == 4) {
 
@@ -303,26 +287,21 @@ function sendChoice() {
 }
 
 
-// Définition des couleurs possibles
+// Color in game
 const couleurs = ['r', 'g', 'b', 'y', 'p'];
 const couleursRGB = ['#F57266', '#A7E8BD', '#ABDAFC', '#FFD970', '#D4ADCF']
 
 
-// Fonction de création de la séquence aléatoire pour l'ordinateur
+// Create random sequence 
 function construireSequenceOrdinateur() {
-    // Initialisation de la séquence
     const sequence = [];
     const sequenceRGB = [];
-    // Ajout de 4 couleurs
     for (let i = 0; i < 4; i++) {
-        // Calcul une position aléatoire
         const position = Math.floor(Math.random() * 5);
 
-        // Récupère la couleur à la position aléatoire
         const couleur = couleurs[position];
         const couleurRGB = couleursRGB[position];
 
-        // Ajoute la couleur à la séquence
         sequence.push(couleur);
         sequenceRGB.push(couleurRGB);
     }
@@ -337,15 +316,13 @@ function construireSequenceOrdinateur() {
     a3.style.background = sequenceRGB[2];
     a4.style.background = sequenceRGB[3];
 
-    // Renvoi la séquence
     return sequence;
-    // return sequenceString;
 }
 
 let sequenceOrdinateur = construireSequenceOrdinateur();
 console.log("Séquence Ordi : " + sequenceOrdinateur);
 
-
+// Verif player choice
 function verif(player_choice) {
     let goodColor = 0;
     let badSpot = 0;
@@ -354,10 +331,9 @@ function verif(player_choice) {
     color_good = "#fff";
     color_bad = "#E94435";
 
-    // copie séq ordi
     let copyOrdi = sequenceOrdinateur.slice();
 
-    // boucle pour identifier le nombre de couleur bien placée
+    // Good place
     let i = 0;
     while (i < player_choice.length) {
         if (player_choice[i] == copyOrdi[i]) {
@@ -370,7 +346,7 @@ function verif(player_choice) {
         }
     }
 
-    // Boucle pour identifier le nombre de couleur mal placée
+    // Bad spot
     i = 0;
     while (i < player_choice.length) {
         const positionColor = copyOrdi.indexOf(player_choice[i])
@@ -398,10 +374,9 @@ function verif(player_choice) {
 
     clearChoice()
     round()
-
+        // Show "win" or "lose"
     const text_V_or_L = document.getElementById("VorL");
 
-    // text_round.style.color = "white" 
     if (round_text > 10 && goodColor != 4) {
         console.log("perdu")
         text_V_or_L.textContent = "Perdu !"
@@ -421,6 +396,7 @@ function verif(player_choice) {
     }
 }
 
+// Restart game (lose/win) :
 const end1 = document.getElementById("endPopupGame")
 const end2 = document.getElementById("endPopupChoice")
 const end3 = document.getElementById("endPopupSelection")
@@ -435,7 +411,6 @@ function restartGame() {
     round_text = 1
 }
 
-// Fonction pour clear le score de la manche :
 function clearScore() {
     for (let i = 1; i < 11; i++) {
 
