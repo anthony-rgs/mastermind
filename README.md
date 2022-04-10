@@ -2,7 +2,7 @@
   <img width="50%" src="image/mastermind-logo.svg" />
 </p>
 
-### <p align="center"> Mastermind • <a href="https://anthony-rgs.github.io/mastermind/" > voir le site </a> </p>
+### <p align="center"> Mastermind • <a href="https://anthony-rgs.github.io/Mastermind/" > voir le site </a> </p>
 
 
 ### 1. Pourquoi 
